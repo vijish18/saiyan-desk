@@ -45,3 +45,17 @@ Original artwork: Bandai Namco’s Dragon Ball FighterZ character pages ([base G
 4. Reload the app. If you previously supplied custom art, use **Change art → Remove** for those slots to reveal the included images.
 
 A GitHub change alone does not update the live Apps Script deployment.
+
+## Cinematic effects and audio
+
+The Desk now has a layered 3D-style stage: cursor-responsive depth, orbiting energy rings, a glowing floor portal, rim lighting, floating debris and rising streaks. Transformations add expanding shockwave rings and phase captions. This uses the existing 2D character images with CSS perspective, not a rotatable 3D character model.
+
+Open **Effects & audio** to select cinematic or calm effects, enable sound effects and English battle lines separately, and set volume. Sound and speech start off. Device speech is an English coach voice, not an imitation of a Goku voice actor. For Goku audio, add your own MP3/WAV clip (up to 2 MB and 12 seconds); it plays during transformations. Clips and audio preferences are saved in this browser, not uploaded to the sheet or GitHub.
+
+The app respects the system reduced-motion setting, pauses hero particles offscreen, stops audio and transformations when the tab is hidden, and supports keyboard skipping with focus restoration. Mobile scenes use a smaller particle budget. Visual effects and previews do not award progress or write training data.
+
+To install this update, follow **Update an existing Apps Script deployment** above. Only `Index.html` changes in Apps Script; the backend and sheet schema stay the same.
+
+### Browser verification
+
+With Node.js and Playwright available, run `node tests/cinematic-browser.cjs`. Set `CHROMIUM_PATH` to use an installed Chromium executable, or install Playwright's Chromium. `PLAYWRIGHT_MODULE` can point to an existing Playwright module. The test uses mocked Apps Script reads and synthetic audio; it never accesses your live sheet. It covers character rendering, depth interaction, transformation cleanup, keyboard focus, audio opt-in/volume, clip validation/removal, preference persistence, responsive layouts and reduced motion. Actual device speech quality depends on the browser and installed voices.
