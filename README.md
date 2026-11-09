@@ -8,7 +8,7 @@ A study and gym tracker that runs as a Google Apps Script web app, with a Google
 - **Gym**: today's exercises from a weekly split, reps per RPE band saved to the tracker tab, stamina/cardio log.
 - **Study**: day plan with tick-offs, courses in priority order, and "plan by priority from today", which lays every section from the Study list into your learning slots around office hours.
 - **Analytics**: power curve, form states, an animated transformation state machine, weekly study hours and workouts, program reps by body part.
-- **Character art**: a built-in original fighter, or any picture you upload (Ctrl+V, drag and drop, or upload).
+- **Character art**: embedded base Goku and Super Saiyan PNGs, with the existing ki aura and transformation crossfade. Custom uploads (Ctrl+V, drag and drop, or upload) and image links still take priority.
 
 ## Files
 
@@ -30,3 +30,18 @@ Tabs used: `Daily-Power-lifting tracker`, `Exercise list`, `stamina tracker`, `S
 4. Deploy → New deployment → Web app. Open the link and approve access once.
 
 Settings (office hours, routine, workout split, art links) live in the `App settings` tab and can be edited in the app.
+
+## Included Goku artwork
+
+`Index.html` embeds the same two transparent PNGs used on the Restart site, so they load without external image requests or uploads to your sheet. Base form uses base Goku; powered-up tiers use Super Saiyan unless you supply custom artwork for those forms. Higher tiers keep their existing progress labels and aura effects; the included images only depict base Goku and Super Saiyan. Removing custom images and links restores the defaults.
+
+Original artwork: Bandai Namco’s Dragon Ball FighterZ character pages ([base Goku](https://dba.bn-ent.net/character/images/goku/portrait.png), [Super Saiyan](https://dba.bn-ent.net/character/images/goku-SS/portrait.png)). Dragon Ball characters and artwork belong to their respective rights holders; this is a personal fan project.
+
+### Update an existing Apps Script deployment
+
+1. Replace the Apps Script project's `Index.html` with this repository's updated `Index.html` and save. No backend or sheet changes are needed for the artwork.
+2. Choose **Deploy → Manage deployments → Edit (pencil)**.
+3. Under **Version**, choose **New version**, then **Deploy**. This keeps your existing `/exec` link.
+4. Reload the app. If you previously supplied custom art, use **Change art → Remove** for those slots to reveal the included images.
+
+A GitHub change alone does not update the live Apps Script deployment.
