@@ -627,6 +627,73 @@ body.dragging::after {
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: .001ms !important; animation-iteration-count: 1 !important; transition-duration: .001ms !important; }
 }
+/* ---------- dimensional energy stage ---------- */
+.hero2 { --scene-gold:#ffc945; --scene-blue:#54dfff; --look-x:0deg; --look-y:0deg; --drift-x:0px; --drift-y:0px; border-radius:14px; background:radial-gradient(ellipse at 76% 70%,#29304866,transparent 58%),linear-gradient(135deg,#11141e,#05070d 70%); }
+.hero2::before { content:''; position:absolute; inset:0; pointer-events:none; z-index:0; background:radial-gradient(ellipse at 74% 80%,#ffbb292b,transparent 47%); animation:scene-breathe 5s ease-in-out infinite; }
+.hero2[data-form="4"] { --scene-gold:#6bdfff; }
+.hero2 .h-right { perspective:1000px; isolation:isolate; }
+.scene-space { position:absolute; inset:0; overflow:hidden; pointer-events:none; transform:rotateY(var(--look-x)) rotateX(var(--look-y)); transform-style:preserve-3d; transition:transform .2s ease-out; }
+.scene-halo { position:absolute; width:72%; aspect-ratio:1; left:14%; top:12%; border-radius:50%; background:radial-gradient(ellipse,#ffeaa522,transparent 65%); box-shadow:0 0 110px #ffc94515,inset 0 0 100px #ffc9450d; }
+.scene-orbit { position:absolute; width:78%; aspect-ratio:1; left:11%; top:12%; border:1px solid #ffd76755; border-radius:50%; transform:rotateX(60deg) rotateZ(-25deg); box-shadow:0 0 20px #ffc94515,inset 0 0 20px #ffc94515; animation:scene-orbit 18s linear infinite; }
+.scene-orbit::before { content:''; position:absolute; width:8px; height:8px; top:14%; left:14%; background:#fff0b0; border-radius:50%; box-shadow:0 0 10px 3px #ffcf45,0 0 32px #ffc945; }
+.scene-orbit.second { inset:9% auto auto 7%; width:86%; border-color:#58d6ff33; animation-direction:reverse; animation-duration:26s; }
+.scene-floor { position:absolute; left:-15%; right:-15%; bottom:-38%; height:80%; transform:rotateX(65deg); background:repeating-linear-gradient(90deg,transparent 0 37px,#ffe09816 38px 39px),repeating-linear-gradient(0deg,transparent 0 37px,#ffe09816 38px 39px); mask-image:radial-gradient(ellipse,#000,transparent 68%); }
+.scene-portal { position:absolute; left:13%; width:74%; bottom:0; height:18%; border:2px solid var(--scene-gold); border-radius:50%; background:radial-gradient(ellipse,#ffce433d,transparent 66%); box-shadow:0 0 26px #ffb72b88,inset 0 0 24px #ffd45866; transform:rotateX(25deg); }
+.scene-portal::before,.scene-portal::after { content:''; position:absolute; inset:14%; border:1px dashed #ffebaf99; border-radius:50%; animation:scene-spin 22s linear infinite; }
+.scene-portal::after { inset:-13%; border-style:solid; border-color:#ffe8a133; }
+.scene-rock { position:absolute; width:var(--size); height:calc(var(--size)*1.2); left:var(--left); bottom:var(--bottom); background:linear-gradient(135deg,#b39151 0 15%,#4d453c 16% 48%,#171c25 49%); clip-path:polygon(18% 0,76% 8%,100% 46%,70% 100%,14% 81%,0 29%); animation:scene-float var(--duration) ease-in-out var(--delay) infinite; opacity:.9; }
+.scene-streak { position:absolute; left:var(--left); top:110%; height:80px; width:1px; background:linear-gradient(transparent,var(--scene-gold),transparent); animation:scene-streak var(--duration) linear var(--delay) infinite; opacity:0; }
+.scene-caption { position:absolute; left:18px; top:22px; font:9px var(--mono); letter-spacing:.2em; color:#d9ca9a99; writing-mode:vertical-rl; }
+.h-fighter { height:86%; bottom:3%; z-index:2; transform:translateX(-50%) translate3d(var(--drift-x),var(--drift-y),35px) rotateY(var(--look-x)); transition:transform .2s ease-out; }
+.h-fighter > .art { animation:scene-levitate 5s ease-in-out infinite; filter:drop-shadow(-6px 0 9px #54dfff44) drop-shadow(7px 0 12px #ffcc4566) drop-shadow(0 25px 20px #000a); }
+.hero2[data-form="0"] .h-fighter > .art { filter:drop-shadow(-4px 0 8px #54dfff44) drop-shadow(5px 0 12px #ffcc4544) drop-shadow(0 20px 22px #0009); }
+.h-fighter:focus-visible { outline:2px solid var(--scene-blue); outline-offset:6px; border-radius:20px; }
+.h-tools { flex-wrap:wrap; }
+.h-tool { min-height:32px; }
+.h-foot { gap:14px; }
+.h-chip { transition:color .2s,text-shadow .2s; }
+.h-chip:hover,.h-chip:focus-visible { color:#fff1b9; text-shadow:0 0 12px #ffd34a; }
+.btn-power { position:relative; overflow:hidden; }
+.btn-power::after { content:''; position:absolute; inset:0; transform:translateX(-130%) skewX(-20deg); background:linear-gradient(90deg,transparent,#fff9,transparent); animation:button-shine 6s ease-in-out infinite; pointer-events:none; }
+.btn-power .arr svg { width:20px; height:20px; display:block; }
+.transform .tf-fighter.has-art .a-to { transition:opacity .12s; }
+.tf-depth-rings { z-index:1; position:absolute; inset:0; pointer-events:none; perspective:850px; overflow:hidden; }
+.tf-depth-rings i { position:absolute; width:65vmin; height:65vmin; border:2px solid #ffe9a866; border-radius:50%; left:calc(50% - 32.5vmin); top:calc(50% - 32.5vmin); transform:rotateX(68deg) rotateZ(-20deg); box-shadow:0 0 24px #ffd65c33; opacity:0; }
+.transform.on .tf-depth-rings i { opacity:.5; }
+.transform.burst .tf-depth-rings i { animation:shockwave-depth 1.6s ease-out both; }
+.transform.burst .tf-depth-rings i:nth-child(2) { animation-delay:.22s; }
+.transform.burst .tf-depth-rings i:nth-child(3) { animation-delay:.44s; }
+.transform .tf-stage { z-index:2; }
+.transform .tf-flash { z-index:3; }
+.tf-phase { position:absolute; top:4vh; left:50%; transform:translateX(-50%); z-index:4; color:#ffdd7b; font:11px var(--mono); letter-spacing:.32em; white-space:nowrap; }
+.tf-phase::before { content:''; display:inline-block; width:6px; height:6px; background:#ffdd7b; margin-right:12px; border-radius:50%; box-shadow:0 0 15px #ffdd7b; }
+.tf-skip { border:1px solid #ffffff44; background:#111b; color:#fff; padding:10px 14px; border-radius:4px; cursor:pointer; }
+.voice-caption { position:fixed; left:50%; bottom:calc(22px + env(safe-area-inset-bottom)); transform:translateX(-50%); z-index:90; max-width:min(560px,calc(100vw - 30px)); width:max-content; border:1px solid #ffd45f66; padding:12px 20px; border-radius:8px; background:#080b13ed; color:#fff1ce; font:600 15px var(--display); text-align:center; box-shadow:0 10px 40px #0008; pointer-events:none; }
+.voice-caption[hidden] { display:none; }
+.fx-settings { width:min(540px,calc(100vw - 28px)); max-height:85vh; }
+.fx-settings .fx-option { display:flex; justify-content:space-between; gap:20px; align-items:center; padding:16px 0; border-bottom:1px solid var(--edge); }
+.fx-option strong { display:block; font-size:14px; color:var(--ink); }
+.fx-option small { display:block; margin-top:4px; color:var(--muted); line-height:1.5; }
+.fx-option input[type=checkbox] { width:20px; height:20px; accent-color:#ffd45f; flex:none; }
+.fx-option input[type=range] { width:140px; max-width:40vw; accent-color:#ffd45f; }
+.voice-upload { border:1px dashed var(--edge-2); border-radius:6px; padding:14px; margin-top:16px; }
+.voice-upload p { margin:8px 0 12px; line-height:1.5; color:var(--muted); }
+.voice-upload input { max-width:100%; }
+.fx-calm *, .fx-calm *::before,.fx-calm *::after { animation-duration:.001ms !important; animation-iteration-count:1 !important; transition-duration:.001ms !important; }
+.fx-calm .scene-streak { display:none; }
+.fx-calm .h-fighter { transform:translateX(-50%); }
+.fx-hidden *, .fx-hidden *::before,.fx-hidden *::after { animation-play-state:paused !important; }
+@keyframes scene-breathe { 50% { opacity:.45; } }
+@keyframes scene-orbit { from { transform:rotateX(60deg) rotateY(-20deg) rotateZ(0); } to { transform:rotateX(60deg) rotateY(-20deg) rotateZ(360deg); } }
+@keyframes scene-spin { to { transform:rotate(360deg); } }
+@keyframes scene-float { 50% { transform:translate3d(7px,-25px,20px) rotate(18deg); } }
+@keyframes scene-streak { 10% { opacity:.55; } 85% { opacity:0; } to { top:-20%; } }
+@keyframes scene-levitate { 50% { translate:0 -7px; } }
+@keyframes button-shine { 0%,72% { transform:translateX(-130%) skewX(-20deg); } 92%,100% { transform:translateX(130%) skewX(-20deg); } }
+@keyframes shockwave-depth { 0% { transform:rotateX(68deg) scale(.25); opacity:.85; } to { transform:rotateX(68deg) scale(4); opacity:0; } }
+@media(max-width:800px) { .scene-caption { left:12px; top:18px; font-size:8px; } .scene-orbit { top:17%; } .h-fighter { height:86%; bottom:3%; } .scene-portal { bottom:1%; } .h-tools { gap:12px; } }
+@media(prefers-reduced-motion:reduce) { .scene-streak { display:none; } .h-fighter { transform:translateX(-50%); } }
+
 </style>
 </head>
 <body>
@@ -676,12 +743,14 @@ body.dragging::after {
 
 </div>
 
+<div id="voice-caption" class="voice-caption" role="status" aria-live="polite" hidden></div>
+<dialog id="dlg-effects"><form method="dialog" class="dlg fx-settings" id="effects-form"></form></dialog>
 <dialog id="dlg-art"><form method="dialog" class="dlg" id="art-form"></form></dialog>
 <dialog id="dlg-update"><form method="dialog" class="dlg" id="update-form"></form></dialog>
 <dialog id="dlg-plan"><form method="dialog" class="dlg" id="plan-form"></form></dialog>
 <dialog id="dlg-add"><form method="dialog" class="dlg" id="add-form"></form></dialog>
 <dialog id="dlg-split"><form method="dialog" class="dlg" id="split-form"></form></dialog>
-<div id="transform" class="transform" hidden></div>
+<div id="transform" class="transform" role="dialog" aria-modal="true" aria-label="Goku transformation" hidden></div>
 <div id="toast" role="status" aria-live="polite"></div>
 <div id="tip" role="tooltip"></div>
 
@@ -1029,7 +1098,7 @@ class Aura {
     this.measure();
   }
   measure() {
-    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    const dpr = Math.min(window.devicePixelRatio || 1, 1.5);
     const r = this.cv.getBoundingClientRect();
     const a = this.anchor.getBoundingClientRect();
     this.W = Math.max(1, r.width);
@@ -1042,7 +1111,7 @@ class Aura {
     this.base = a.top - r.top + a.height * 0.99;
     this.top = a.top - r.top - a.height * this.tip;
     this.half = a.width * 0.5;
-    this.max = Math.round(1100 * Math.max(0.45, Math.min(1.4, (this.full ? a.height / 2 : a.width) / 300)));
+    this.max = Math.round((innerWidth < 800 ? 240 : 520) * Math.max(0.45, Math.min(1.4, (this.full ? a.height / 2 : a.width) / 300)));
     if (this.full) this.half = a.width * 0.56;
     this.k = a.width / 240;
   }
@@ -1222,7 +1291,7 @@ class Aura {
       if (!document.hidden) this.frame(now, dt);
       this.raf = requestAnimationFrame(step);
     };
-    if (matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    if (FX.reduced()) {
       for (let i = 0; i < 60; i++) this.spawn(16), this.parts.forEach(p => (p.t += 16 / p.life));
       this.parts = this.parts.filter(p => p.t < 1);
       this.frame(performance.now(), 0);
@@ -1237,10 +1306,12 @@ class Aura {
 let tfTimers = [];
 let tfRaf = 0;
 let tfAura = null;
+let tfReturnFocus = null;
 function playTransform(from, to, p0, p1, shout, note) {
   const text = shout || FORMS[to].shout || 'Power up!';
-  if (matchMedia('(prefers-reduced-motion: reduce)').matches) { toast(`${text} Power level ${fmtInt(p1)}`); return; }
+  if (FX.reduced()) { closeTransform(); BattleVoice.speak('charge'); toast(`${text} Power level ${fmtInt(p1)}`); return; }
   closeTransform();
+  tfReturnFocus = document.activeElement;
   const el = $('#transform');
   const fromArt = artFor(from);
   const toArt = artFor(to);
@@ -1251,13 +1322,15 @@ function playTransform(from, to, p0, p1, shout, note) {
   const fighterInner = useArt
     ? `<img class="art a-from" src="${esc(fromArt || toArt)}" alt="" referrerpolicy="no-referrer"><img class="art a-to" src="${esc(toArt || fromArt)}" alt="" referrerpolicy="no-referrer">`
     : saiyanSvg(from);
-  el.innerHTML = `<div class="tf-bg"></div><div class="tf-lines"></div><div class="tf-rays"></div>
+  el.innerHTML = `<div class="tf-phase">AWAKENING YOUR POWER</div><div class="tf-depth-rings" aria-hidden="true"><i></i><i></i><i></i></div><div class="tf-bg"></div><div class="tf-lines"></div><div class="tf-rays"></div>
     <div class="tf-stage"><canvas class="tf-aura"></canvas><div class="tf-fighter${useArt ? ' has-art' : ''}">${fighterInner}</div></div>
     <div class="tf-flash"></div><div class="tf-bars"><i></i><i></i></div>
     <div class="tf-text"><div class="tf-yell">HAAAAAAA</div><div class="tf-shout">${esc(text)}</div>
       <div class="tf-scouter"><span>Power level</span><b>${fmtInt(p0)}</b></div>${note ? `<div class="tf-note">${esc(note)}</div>` : ''}</div>
-    <div class="tf-skip">Tap to skip ›</div>`;
+    <button type="button" class="tf-skip">Skip transformation ›</button>`;
   el.hidden = false;
+  $('.shell').inert = true;
+  $('.tf-skip', el).focus({ preventScroll: true });
   const stage = $('.tf-stage', el);
   const fighter = $('.tf-fighter', el);
   const svg = $('.saiyan', el);
@@ -1273,6 +1346,7 @@ function playTransform(from, to, p0, p1, shout, note) {
   const END = 5000;
   const flicks = [860, 1100, 1300, 1450, 1560, 1640];
   SFX.charge(BURST);
+  BattleVoice.speak('charge');
   const T0 = performance.now();
   let phase = 0;
   let last = T0;
@@ -1301,6 +1375,7 @@ function playTransform(from, to, p0, p1, shout, note) {
         aura.lift = 0;
         aura.burst();
         el.classList.add('burst');
+        $('.tf-phase', el).textContent = 'LIMIT BREAK / POWER RELEASED';
         countUp($('.tf-scouter b', el), p0, p1, 1300);
       }
       const k = t - BURST;
@@ -1322,12 +1397,16 @@ function closeTransform() {
   tfRaf = 0;
   if (tfAura) { tfAura.stop(); tfAura = null; }
   SFX.stop();
+  BattleVoice.stop();
   tfTimers.forEach(clearTimeout);
   tfTimers = [];
   const el = $('#transform');
   el.hidden = true;
   el.className = 'transform';
   el.innerHTML = '';
+  $('.shell').inert = false;
+  if (tfReturnFocus && tfReturnFocus.isConnected) tfReturnFocus.focus({ preventScroll: true });
+  tfReturnFocus = null;
 }
 function countUp(el, a, b, ms) {
   const t0 = performance.now();
@@ -1346,7 +1425,7 @@ function afterProgress(before) {
   const power = powerLevel();
   if (form > before.form) playTransform(before.form, form, before.power, power);
   else if (before.power < 9000 && power >= 9000) playTransform(form, Math.max(1, form), before.power, power, "It's over 9,000!");
-  else if (power > before.power) toast(`+${fmtInt(power - before.power)} power`);
+  else if (power > before.power) { toast(`+${fmtInt(power - before.power)} power`); BattleVoice.speak('complete', false); }
   rememberForm(form);
 }
 const snapshot = () => ({ form: todayForm(), power: powerLevel() });
@@ -1362,6 +1441,7 @@ const kpi = (label, value, sub, cls = '') => `<div class="kpi ${cls}"><span clas
 
 function render() {
   if (!S.data) return;
+  FX.unmount();
   if (machineStop) { machineStop(); machineStop = null; }
   if (heroAura) { heroAura.stop(); heroAura = null; }
   renderBar();
@@ -1560,6 +1640,124 @@ function formTrail(n) {
   }).join('');
 }
 
+/* ---------- dimensional scene and audio preferences ---------- */
+const FX = {
+  calm: store.get('saiyan-effects') === 'calm',
+  cleanup: null,
+  inView: true,
+  reduced() { return this.calm || matchMedia('(prefers-reduced-motion: reduce)').matches; },
+  sync() { document.documentElement.classList.toggle('fx-calm', this.calm); },
+  unmount() { if (this.cleanup) this.cleanup(); this.cleanup = null; },
+  mount() {
+    this.unmount(); this.sync();
+    const hero = $('.hero2');
+    if (!hero) return;
+    const controller = new AbortController();
+    const opts = { signal: controller.signal, passive: true };
+    let raf = 0, x = 0, y = 0;
+    const apply = () => {
+      raf = 0;
+      hero.style.setProperty('--look-x', `${x * 10}deg`);
+      hero.style.setProperty('--look-y', `${-y * 6}deg`);
+      hero.style.setProperty('--drift-x', `${x * 12}px`);
+      hero.style.setProperty('--drift-y', `${y * 6}px`);
+    };
+    hero.addEventListener('pointermove', e => {
+      if (this.reduced() || e.pointerType !== 'mouse') return;
+      const r = hero.getBoundingClientRect();
+      x = (e.clientX - r.left) / r.width - .5; y = (e.clientY - r.top) / r.height - .5;
+      if (!raf) raf = requestAnimationFrame(apply);
+    }, opts);
+    hero.addEventListener('pointerleave', () => { x = y = 0; if (!raf) raf = requestAnimationFrame(apply); }, opts);
+    const observer = new IntersectionObserver(entries => {
+      this.inView = entries[0].isIntersecting;
+      const active = this.inView && !document.hidden;
+      hero.classList.toggle('fx-hidden', !active);
+      if (heroAura) active ? heroAura.start() : heroAura.stop();
+    }, {threshold:.05});
+    observer.observe(hero);
+    this.cleanup = () => { controller.abort(); observer.disconnect(); cancelAnimationFrame(raf); };
+  },
+};
+function energyStage() {
+  const rocks = [14,28,76,88,8,93].map((left,i) => `<i class="scene-rock" style="--left:${left}%;--bottom:${12+i*7}%;--size:${12+i%3*8}px;--duration:${4+i%3}s;--delay:-${i*.7}s"></i>`).join('');
+  const streaks = Array.from({length:12},(_,i) => `<i class="scene-streak" style="--left:${6+i*8}%;--duration:${2+i%4}s;--delay:-${i*.6}s"></i>`).join('');
+  return `<div class="scene-space" aria-hidden="true"><div class="scene-halo"></div><div class="scene-orbit"></div><div class="scene-orbit second"></div><div class="scene-floor"></div><div class="scene-portal"></div>${rocks}${streaks}</div><span class="scene-caption" aria-hidden="true">GRAVITY CHAMBER / KI FIELD ACTIVE</span>`;
+}
+const BattleVoice = {
+  on: store.get('saiyan-voice') === 'on',
+  volume: Math.max(0, Math.min(1, Number(store.get('saiyan-volume') ?? '.65') || 0)),
+  clip: store.get('saiyan-voice-clip') || '',
+  player: null, timer: null, utterance: null, generation: 0,
+  lines: { charge: "Let's push past our limits!", burst: "Now, let's power up!", complete: 'Great work! Keep training. Every step makes you stronger.' },
+  stop() {
+    this.generation++;
+    if (this.player) { this.player.pause(); this.player = null; }
+    if (this.utterance && window.speechSynthesis) speechSynthesis.cancel();
+    this.utterance = null;
+    clearTimeout(this.timer);
+    $('#voice-caption').hidden = true;
+  },
+  speak(kind = 'charge', useClip = true) {
+    this.stop();
+    if (!this.on || document.hidden) return;
+    const generation = this.generation;
+    const text = useClip && this.clip ? 'Goku voice clip' : this.lines[kind] || this.lines.charge;
+    const caption = $('#voice-caption'); caption.textContent = text; caption.hidden = false;
+    const finish = () => { if (generation === this.generation) caption.hidden = true; };
+    this.timer = setTimeout(finish, 12000);
+    if (useClip && this.clip) {
+      const player = this.player = new Audio(this.clip); player.volume = this.volume;
+      player.onended = finish;
+      player.onerror = () => { if (generation === this.generation) { finish(); toast('This voice clip could not play. Try another MP3 or WAV file.', true); } };
+      player.play().catch(() => { if (generation === this.generation) { finish(); toast('Tap Test voice to enable audio playback.', true); } });
+      return;
+    }
+    if (!window.speechSynthesis || !window.SpeechSynthesisUtterance) { finish(); toast('Spoken lines are unavailable in this browser. Add a voice clip in Effects & audio.', true); return; }
+    const utterance = this.utterance = new SpeechSynthesisUtterance(text);
+    utterance.lang = 'en-US'; utterance.rate = 1.03; utterance.pitch = .9; utterance.volume = this.volume;
+    const voice = speechSynthesis.getVoices().find(v => /^en[-_]/i.test(v.lang) && /david|daniel|guy|male/i.test(v.name));
+    if (voice) utterance.voice = voice;
+    utterance.onend = finish;
+    utterance.onerror = e => { finish(); if (!['canceled','interrupted'].includes(e.error)) toast('Voice playback is unavailable. You can add a voice clip instead.', true); };
+    speechSynthesis.speak(utterance);
+  },
+};
+function openEffects() {
+  $('#effects-form').innerHTML = `<h2>Effects & audio</h2>
+    <label class="fx-option"><span><strong>Cinematic effects</strong><small>3D-style depth, energy rings and floating debris.</small></span><input type="checkbox" name="cinematic" ${!FX.calm ? 'checked' : ''}></label>
+    <label class="fx-option"><span><strong>Sound effects</strong><small>Charge, impact and electric crackle.</small></span><input type="checkbox" name="sound" ${SFX.on ? 'checked' : ''}></label>
+    <label class="fx-option"><span><strong>Battle voice · English</strong><small>${BattleVoice.clip ? 'Your Goku clip plays during transformations.' : 'Spoken battle lines using your device’s voice.'}</small></span><input type="checkbox" name="voice" ${BattleVoice.on ? 'checked' : ''}></label>
+    <label class="fx-option"><span><strong>Volume</strong><small id="volume-label">${Math.round(BattleVoice.volume*100)}%</small></span><input type="range" name="volume" min="0" max="100" value="${Math.round(BattleVoice.volume*100)}" aria-label="Audio volume"></label>
+    <div class="voice-upload"><strong>Goku voice clip</strong><p>Add an MP3 or WAV clip, up to 2 MB and 12 seconds. It replaces the spoken transformation line and is saved on this browser.</p><input type="file" id="voice-file" accept="audio/mpeg,audio/wav,audio/x-wav,audio/mp4,audio/ogg"><p id="voice-file-status" role="status">${BattleVoice.clip ? 'Custom clip ready.' : 'No custom clip. Using English device voice.'}</p><button type="button" class="btn small" data-act="voice-remove" ${BattleVoice.clip ? '' : 'disabled'}>Remove clip</button></div>
+    <div class="row-end"><button type="button" class="btn" data-act="voice-test">Test voice</button><button class="btn primary" value="close">Done</button></div>`;
+  $('#dlg-effects').showModal();
+}
+async function importVoice(file) {
+  if (!file) return;
+  if (file.size > 2*1024*1024 || !/^audio\//.test(file.type)) { toast('Choose an audio file under 2 MB.', true); return; }
+  const status = $('#voice-file-status'); status.textContent = 'Checking clip…';
+  let url;
+  try {
+    url = URL.createObjectURL(file);
+    await new Promise((resolve,reject) => {
+      const audio = new Audio();
+      const timeout = setTimeout(() => finish(new Error('Could not read this audio file.')), 8000);
+      const finish = error => { clearTimeout(timeout); audio.onloadedmetadata = audio.onerror = null; audio.removeAttribute('src'); audio.load(); error ? reject(error) : resolve(); };
+      audio.onloadedmetadata = () => finish(!Number.isFinite(audio.duration) || audio.duration > 12 ? new Error('Use a voice clip no longer than 12 seconds.') : null);
+      audio.onerror = () => finish(new Error('This audio format is not supported by your browser.'));
+      audio.src = url;
+    });
+    const data = await new Promise((resolve,reject) => { const reader = new FileReader(); reader.onload = () => resolve(reader.result); reader.onerror = () => reject(new Error('Could not read the clip.')); reader.readAsDataURL(file); });
+    localStorage.setItem('saiyan-voice-clip', data);
+    BattleVoice.stop(); BattleVoice.clip = data;
+    status.textContent = 'Custom clip ready. Enable Battle voice to hear it.';
+    $('[data-act="voice-remove"]').disabled = false;
+  } catch (e) { status.textContent = 'Clip not saved. ' + (e.name === 'QuotaExceededError' ? 'Browser storage is full; try a smaller clip.' : e.message); }
+  finally { if (url) URL.revokeObjectURL(url); }
+}
+FX.sync();
+
 /* ---------- desk */
 const FORM_NAMES_SHORT = ['Base', 'Super Saiyan', 'SSJ 2', 'SSJ 3', 'Blue'];
 
@@ -1740,7 +1938,7 @@ const SFX = {
     if (!ctx) return null;
     if (this.bus) { this.bus.gain.cancelScheduledValues(ctx.currentTime); this.bus.disconnect(); }
     this.bus = ctx.createGain();
-    this.bus.gain.value = 0.9;
+    this.bus.gain.value = BattleVoice.volume * .65;
     this.bus.connect(ctx.destination);
     return ctx;
   },
@@ -1854,7 +2052,7 @@ function heroHtml(sc, form) {
       <h1 class="h-title">Break your<br><span>limits.</span></h1>
       <p class="h-sub">Train your body. Sharpen your mind. Your next transformation starts with what you do today.</p>
       <div class="h-actions">
-        <button class="btn-power" data-act="power-up"><span class="bolt">⚡</span>Power up<span class="arr">↗</span></button>
+        <button class="btn-power" data-act="power-up"><span class="bolt">⚡</span>Power up<span class="arr" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 19 19 5M5 5h14v14"/></svg></span></button>
         <button class="btn-ghost" data-act="goto" data-tab="gym">Start my missions <span>→</span></button>
       </div>
       <div class="h-mission">
@@ -1863,7 +2061,7 @@ function heroHtml(sc, form) {
         <div class="h-msub">${mp}% of today's missions complete</div>
       </div>
     </div>
-    <div class="h-right"><button class="h-fighter" data-act="power-up" aria-label="Play the transformation">${characterHtml(form)}</button>
+    <div class="h-right">${energyStage()}<button class="h-fighter" data-act="power-up" aria-label="Play the transformation">${characterHtml(form)}</button>
       ${hasArt() ? '' : `<button class="h-artcta" data-act="open-art"><b>Add your own character art</b><span>${matchMedia('(pointer: coarse)').matches ? 'Tap here to upload a picture for each form (save it to your phone first).' : 'Copy a picture and press Ctrl+V here, drop the file on this page, or click to upload.'}</span></button>`}</div>
     <div class="h-form">
       <small>Transformation</small>
@@ -1875,6 +2073,7 @@ function heroHtml(sc, form) {
       <div class="h-chips">${FORMS.map((f, i) => `<button class="h-chip${i <= form ? ' on' : ''}${i === form ? ' cur' : ''}" data-act="preview-form" data-form="${i}" title="${i <= form ? 'Replay' : 'Preview'} ${esc(f.name)}">${i <= form ? '◆' : '◇'} ${FORM_NAMES_SHORT[i]}</button>`).join('')}</div>
       <div class="h-tools">
         <button class="h-tool" data-act="sound" aria-pressed="${SFX.on}">♫ Sound ${SFX.on ? 'on' : 'off'}</button>
+        <button class="h-tool" data-act="open-effects">Effects & audio</button>
         <button class="h-tool" data-act="open-art">${hasArt() ? 'Change art' : 'Set character art ↗'}</button>
       </div>
     </div>
@@ -1942,6 +2141,7 @@ function renderDesk() {
   <h2 class="band">3 · Dragon Balls</h2>
   ${dragonBalls()}`;
   startHeroAura();
+  FX.mount();
 }
 
 /** The Desk hero keeps a live ki aura burning at today's form, around whichever art is shown. */
@@ -2308,7 +2508,7 @@ function drawPowerCurve() {
 function startMachine() {
   const cv = $('#machine');
   if (!cv) return;
-  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const reduce = FX.reduced();
   const seq = [];
   for (let i = 59; i >= 0; i--) { const sc = dayScore(addDays(TODAY, -i)); if (sc.pct != null) seq.push(sc.form); }
   const occ = [0, 0, 0, 0, 0];
@@ -2328,7 +2528,7 @@ function startMachine() {
   const panel = cssVar('--panel');
   const ink = cssVar('--ink');
   const muted = cssVar('--muted');
-  const dpr = Math.min(window.devicePixelRatio || 1, 2);
+  const dpr = Math.min(window.devicePixelRatio || 1, 1.5);
   const W = Math.max(cv.parentElement.clientWidth - 32, 280);
   const H = W < 420 ? 300 : 360;
   cv.width = W * dpr;
@@ -2901,6 +3101,12 @@ document.addEventListener('click', e => {
       b.textContent = `♫ Sound ${SFX.on ? 'on' : 'off'}`;
       b.setAttribute('aria-pressed', String(SFX.on));
       break;
+    case 'open-effects': openEffects(); break;
+    case 'voice-test':
+      BattleVoice.on = true; store.set('saiyan-voice', 'on'); $('#effects-form').elements.voice.checked = true; BattleVoice.speak('charge'); break;
+    case 'voice-remove':
+      BattleVoice.stop(); BattleVoice.clip = ''; try { localStorage.removeItem('saiyan-voice-clip'); } catch (e) {}
+      $('#voice-file-status').textContent = 'No custom clip. Using English device voice.'; b.disabled = true; break;
     case 'preview-form': {
       const f = +b.dataset.form;
       const cur = todayForm();
@@ -2965,10 +3171,38 @@ $('#art-form').addEventListener('input', e => {
   const v = e.target.value.trim();
   $('#thumb-' + k).innerHTML = /^https:\/\//.test(v) ? `<img src="${esc(v)}" alt="" referrerpolicy="no-referrer">` : ((S.art[k] || DEFAULT_ART[k]) ? `<img src="${esc(S.art[k] || DEFAULT_ART[k])}" alt="">` : '<span>—</span>');
 });
+
+$('#effects-form').addEventListener('input', e => {
+  const input = e.target;
+  if (input.name === 'volume') {
+    BattleVoice.volume = Number(input.value) / 100; store.set('saiyan-volume', String(BattleVoice.volume));
+    $('#volume-label').textContent = input.value + '%';
+    if (BattleVoice.player) BattleVoice.player.volume = BattleVoice.volume;
+    if (SFX.bus && SFX.ctx) SFX.bus.gain.setTargetAtTime(BattleVoice.volume * .65, SFX.ctx.currentTime, .05);
+  }
+});
+$('#effects-form').addEventListener('change', e => {
+  const input = e.target;
+  if (input.id === 'voice-file') { importVoice(input.files[0]); return; }
+  if (input.name === 'cinematic') { FX.calm = !input.checked; store.set('saiyan-effects', FX.calm ? 'calm' : 'cinematic'); FX.sync(); closeTransform(); render(); }
+  if (input.name === 'sound') { SFX.on = input.checked; store.set('saiyan-sound', SFX.on ? 'on' : 'off'); if (!SFX.on) SFX.stop(); render(); }
+  if (input.name === 'voice') { BattleVoice.on = input.checked; store.set('saiyan-voice', BattleVoice.on ? 'on' : 'off'); if (!BattleVoice.on) BattleVoice.stop(); }
+});
+matchMedia('(prefers-reduced-motion: reduce)').addEventListener('change', () => { closeTransform(); if (S.data) render(); });
+document.addEventListener('visibilitychange', () => {
+  document.documentElement.classList.toggle('fx-hidden', document.hidden);
+  if (document.hidden) { closeTransform(); if (heroAura) heroAura.stop(); }
+  else if (heroAura && FX.inView) heroAura.start();
+});
+
 $('#plan-form').addEventListener('input', () => { planChecks(); $('#plan-preview').innerHTML = ''; });
 $('#split-form').addEventListener('input', splitCounts);
 $('#transform').addEventListener('click', closeTransform);
-document.addEventListener('keydown', e => { if (e.key === 'Escape' && !$('#transform').hidden) closeTransform(); });
+document.addEventListener('keydown', e => {
+  if ($('#transform').hidden) return;
+  if (e.key === 'Escape') closeTransform();
+  if (e.key === 'Tab') { e.preventDefault(); $('.tf-skip').focus(); }
+});
 document.addEventListener('visibilitychange', () => {
   if (!document.hidden && S.data && (Date.now() - S.loadedAt > 5 * 60e3 || isoOf(new Date()) !== TODAY)) load(true);
 });
